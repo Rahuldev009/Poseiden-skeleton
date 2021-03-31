@@ -10,7 +10,7 @@ public interface RatingService {
 
     public List<Rating> getAllByRating();
 
-    public void addRating(Rating rating);
+    public void saveRating(Rating rating);
 
     public void updateRating(Rating rating);
 

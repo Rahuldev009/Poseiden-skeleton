@@ -19,7 +19,7 @@ public class RatingServiceImpl implements RatingService {
 
     @Override
     public Rating getByRating(int id) {
-        return ratingRepository.getOne(id);
+        return ratingRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid Rating Id:" + id));
     }
 
     @Override
@@ -28,7 +28,7 @@ public class RatingServiceImpl implements RatingService {
     }
 
     @Override
-    public void addRating(Rating rating) {
+    public void saveRating(Rating rating) {
         ratingRepository.save(rating);
     }
 
@@ -39,7 +39,9 @@ public class RatingServiceImpl implements RatingService {
 
     @Override
     public void deleteRating(int id) {
-        ratingRepository.deleteById(id);
+        Rating rating = ratingRepository.findById(id).orElseThrow(() ->
+                new IllegalArgumentException("Invalid Rating Id:" + id));
+        ratingRepository.delete(rating);
     }
 
 }

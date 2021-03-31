@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getByIdUser(int id) {
-        return userRepository.getOne(id);
+        return userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid User Id:" + id));
     }
 
     @Override
@@ -39,7 +39,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(int id) {
-        userRepository.deleteById(id);
+        User user = userRepository.findById(id).orElseThrow(() ->
+                new IllegalArgumentException("Invalid User Id:" + id));
+        userRepository.delete(user);
     }
 
 }

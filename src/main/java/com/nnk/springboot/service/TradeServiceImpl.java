@@ -19,7 +19,7 @@ public class TradeServiceImpl implements TradeService {
 
     @Override
     public Trade getByIdTrade(int id) {
-        return tradeRepository.getOne(id);
+        return tradeRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid Trade Id:" + id));
     }
 
     @Override
@@ -39,7 +39,9 @@ public class TradeServiceImpl implements TradeService {
 
     @Override
     public void deleteTrade(int id) {
-        tradeRepository.deleteById(id);
+       Trade trade = tradeRepository.findById(id).orElseThrow(() ->
+               new IllegalArgumentException("Invalid Trade Id:" + id));
+       tradeRepository.delete(trade);
     }
 
 }

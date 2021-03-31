@@ -23,7 +23,8 @@ public class BidListServiceImpl implements BidListService {
      */
     @Override
     public BidList getBidListById(int id) {
-        return bidListRepository.getOne(id);
+        return bidListRepository.findById(id).orElseThrow(() ->
+                new IllegalArgumentException("Invalid BidList Id:" + id));
     }
 
     @Override
@@ -43,7 +44,9 @@ public class BidListServiceImpl implements BidListService {
 
     @Override
     public void deleteBidList(int id) {
-        bidListRepository.deleteById(id);
+        BidList bidList = bidListRepository.findById(id).orElseThrow(() ->
+                new IllegalArgumentException(("Invalid BidList Id:"+ id)));
+        bidListRepository.delete(bidList);
     }
 
 }
