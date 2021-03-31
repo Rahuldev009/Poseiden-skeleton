@@ -19,7 +19,7 @@ public class CurvePointServiceImpl implements CurvePointService {
 
     @Override
     public CurvePoint getCurvePointById(int id) {
-        return curvePointRepository.getOne(id);
+        return curvePointRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid curvePoint Id:" + id));
     }
 
     @Override
@@ -39,7 +39,9 @@ public class CurvePointServiceImpl implements CurvePointService {
 
     @Override
     public void deleteCurvePoint(int id) {
-        curvePointRepository.deleteById(id);
+        CurvePoint curvePoint = curvePointRepository.findById(id).orElseThrow(() ->
+                new IllegalArgumentException("Invalid curvePoint Id:" + id));
+        curvePointRepository.delete(curvePoint);
     }
 
 }

@@ -16,8 +16,13 @@ import javax.validation.Valid;
 
 @Controller
 public class UserController {
-    @Autowired
+
     private UserRepository userRepository;
+
+    @Autowired
+    public UserController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @RequestMapping("/user/list")
     public String home(Model model)
@@ -28,6 +33,7 @@ public class UserController {
 
     @GetMapping("/user/add")
     public String addUser(User bid) {
+        userRepository.save(bid);
         return "user/add";
     }
 

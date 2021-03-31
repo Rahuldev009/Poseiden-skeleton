@@ -19,7 +19,7 @@ public class RuleNameServiceImpl implements RuleNameService {
 
     @Override
     public RuleName getById(int id) {
-        return ruleNameRepository.getOne(id);
+        return ruleNameRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid RuleName Id:" + id));
     }
 
     @Override
@@ -39,6 +39,9 @@ public class RuleNameServiceImpl implements RuleNameService {
 
     @Override
     public void deleteRuleName(int id) {
-        ruleNameRepository.deleteById(id);
+        RuleName ruleName = ruleNameRepository.findById(id).orElseThrow(() ->
+                new IllegalArgumentException("Invalid RuleName Id:" + id));
+        ruleNameRepository.delete(ruleName);
     }
+
 }
