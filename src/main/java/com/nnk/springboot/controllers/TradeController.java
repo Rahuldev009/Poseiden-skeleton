@@ -1,5 +1,6 @@
 package com.nnk.springboot.controllers;
 
+import com.nnk.springboot.domain.RuleName;
 import com.nnk.springboot.domain.Trade;
 import com.nnk.springboot.service.TradeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,22 +29,20 @@ public class TradeController {
     @RequestMapping("/trade/list")
     public String home(Model model) {
         List<Trade> trades = tradeService.getAllTrade();
-        model.addAttribute("allTrades", trades);
+        model.addAttribute("trades", trades);
         return "trade/list";
     }
 
     @GetMapping("/trade/add")
     public String addUser(Trade bid) {
-        tradeService.saveTrade(bid);
         return "trade/add";
     }
 
     @PostMapping("/trade/validate")
     public String validate(@Valid Trade trade, BindingResult result, Model model) {
-        // TODO: check data valid and save to db, after saving return Trade list
         if (!result.hasErrors()) {
             tradeService.saveTrade(trade);
-            model.addAttribute("allTrades", tradeService.getAllTrade());
+            model.addAttribute("trades", tradeService.getAllTrade());
             return "redirect:/trade/list";
         }
         return "trade/add";
@@ -51,7 +50,8 @@ public class TradeController {
 
     @GetMapping("/trade/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        // TODO: get Trade by Id and to model then show to the form
+        Trade trade = tradeService.getByIdTrade(id);
+        model.addAttribute("trade", trade);
         return "trade/update";
     }
 
@@ -62,8 +62,8 @@ public class TradeController {
             return "trade/update";
         }
         trade.setTradeId(id);
-        tradeService.saveTrade(trade);
-        model.addAttribute("allTrades", tradeService.getAllTrade());
+        tradeService.updateTrade(trade);
+        model.addAttribute("trades", tradeService.getAllTrade());
         return "redirect:/trade/list";
     }
 
@@ -71,7 +71,7 @@ public class TradeController {
     public String deleteTrade(@PathVariable("id") Integer id, Model model) {
         // TODO: Find Trade by Id and delete the Trade, return to Trade list
         tradeService.deleteTrade(id);
-        model.addAttribute("allTrades", tradeService.getAllTrade());
+        model.addAttribute("trades", tradeService.getAllTrade());
         return "redirect:/trade/list";
     }
 

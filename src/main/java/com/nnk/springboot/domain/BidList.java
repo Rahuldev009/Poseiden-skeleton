@@ -1,21 +1,19 @@
 package com.nnk.springboot.domain;
 
-import org.springframework.beans.factory.annotation.Required;
 
 import javax.persistence.*;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "bidlist")
 public class BidList {
-    // TODO: Map columns in data table BIDLIST with corresponding java fields
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     Integer BidListId;
+    @NotBlank(message = "Account is mandatory")
     String account;
+    @NotBlank(message = "Type is mandatory")
     String type;
     Double bidQuantity;
     Double askQuantity;
@@ -37,9 +35,7 @@ public class BidList {
     String sourceListId;
     String side;
 
-    public BidList(String account_test, String type_test, double v) {
 
-    }
 
     public Integer getBidListId() {
         return BidListId;
@@ -216,4 +212,33 @@ public class BidList {
     public void setSide(String side) {
         this.side = side;
     }
+
+    @Override
+    public String toString() {
+        return "BidList{" +
+                "BidListId=" + BidListId +
+                ", account='" + account + '\'' +
+                ", type='" + type + '\'' +
+                ", bidQuantity=" + bidQuantity +
+                ", askQuantity=" + askQuantity +
+                ", bid=" + bid +
+                ", ask=" + ask +
+                ", benchmark='" + benchmark + '\'' +
+                ", bidListDate=" + bidListDate +
+                ", commentary='" + commentary + '\'' +
+                ", security='" + security + '\'' +
+                ", status='" + status + '\'' +
+                ", trader='" + trader + '\'' +
+                ", book='" + book + '\'' +
+                ", creationName='" + creationName + '\'' +
+                ", creationDate=" + creationDate +
+                ", revisionName='" + revisionName + '\'' +
+                ", revisionDate=" + revisionDate +
+                ", dealName='" + dealName + '\'' +
+                ", dealType='" + dealType + '\'' +
+                ", sourceListId='" + sourceListId + '\'' +
+                ", side='" + side + '\'' +
+                '}';
+    }
+
 }

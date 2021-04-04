@@ -11,15 +11,18 @@ public class RuleName {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     Integer id;
+    @NotBlank(message = "Must not be Blank")
     String name;
+    @NotBlank(message = "Must not be Blank")
     String description;
+    @NotBlank(message = "Must not be Blank")
     String json;
+    @NotBlank(message = "Must not be Blank")
     String template;
+    @NotBlank(message = "Must not be Blank")
     String sqlStr;
+    @NotBlank(message = "Must not be Blank")
     String sqlPart;
-
-    public RuleName(String rule_name, String description, String json, String template, String sql, String sql_part) {
-    }
 
     public Integer getId() {
         return id;

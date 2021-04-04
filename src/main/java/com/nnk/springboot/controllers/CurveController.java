@@ -28,13 +28,12 @@ public class CurveController {
     @RequestMapping("/curvePoint/list")
     public String home(Model model) {
         List<CurvePoint> curvePoints = curvePointService.getAllCurvePoint();
-        model.addAttribute("allCurvePoints", curvePoints);
+        model.addAttribute("curvePoints", curvePoints);
         return "curvePoint/list";
     }
 
     @GetMapping("/curvePoint/add")
     public String addBidForm(CurvePoint bid) {
-        curvePointService.saveCurvePoint(bid);
         return "curvePoint/add";
     }
 
@@ -42,7 +41,7 @@ public class CurveController {
     public String validate(@Valid CurvePoint curvePoint, BindingResult result, Model model) {
         if (!result.hasErrors()) {
             curvePointService.saveCurvePoint(curvePoint);
-            model.addAttribute("allCurvePoints", curvePointService.getAllCurvePoint());
+            model.addAttribute("curvePoints", curvePointService.getAllCurvePoint());
             return "redirect:/curvePoint/list";
         }
         return "curvePoint/add";
@@ -50,7 +49,8 @@ public class CurveController {
 
     @GetMapping("/curvePoint/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        // TODO: get CurvePoint by Id and to model then show to the form
+        CurvePoint curvePoint = curvePointService.getCurvePointById(id);
+        model.addAttribute("curvePoint", curvePoint);
         return "curvePoint/update";
     }
 
@@ -60,16 +60,16 @@ public class CurveController {
         if (result.hasErrors()) {
             return "curvePoint/update";
         }
-        curvePoint.setCurveId(id);
-        curvePointService.saveCurvePoint(curvePoint);
-        model.addAttribute("allCurvePoints", curvePointService.getAllCurvePoint());
+        curvePoint.setId(id);
+        curvePointService.updateCurvePoint(curvePoint);
+        model.addAttribute("curvePoints", curvePointService.getAllCurvePoint());
         return "redirect:/curvePoint/list";
     }
 
     @GetMapping("/curvePoint/delete/{id}")
     public String deleteBid(@PathVariable("id") Integer id, Model model) {
         curvePointService.deleteCurvePoint(id);
-        model.addAttribute("allCurvePoints", curvePointService.getAllCurvePoint());
+        model.addAttribute("curvePoints", curvePointService.getAllCurvePoint());
         return "redirect:/curvePoint/list";
     }
 
