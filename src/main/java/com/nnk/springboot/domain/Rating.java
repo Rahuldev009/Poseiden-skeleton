@@ -12,13 +12,14 @@ public class Rating {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     Integer id;
+    @NotBlank(message = "Must not be Blank")
     String moodysRating;
+    @NotBlank(message = "Must not be Blank")
     String sandPRating;
+    @NotBlank(message = "Must not be Blank")
     String fitchRating;
+    @NotNull(message = "Must not be null")
     Integer orderNumber;
-
-    public Rating(String moodys_rating, String sand_pRating, String fitch_rating, int i) {
-    }
 
     public Integer getId() {
         return id;

@@ -15,14 +15,12 @@ public class CurvePoint {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     Integer id;
+    @NotNull(message = "Must not be null")
     Integer curveId;
     Timestamp asOfDate;
     Double term;
     Double value;
     Timestamp creationDate;
-
-    public CurvePoint(int i, double v, double v1) {
-    }
 
     public Integer getId() {
         return id;

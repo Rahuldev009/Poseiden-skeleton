@@ -12,7 +12,9 @@ public class Trade {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     Integer tradeId;
+    @NotBlank(message = "Account is mandatory")
     String account;
+    @NotBlank(message = "Type is mandatory")
     String type;
     Double buyQuantity;
     Double sellQuantity;
@@ -32,9 +34,6 @@ public class Trade {
     String dealType;
     String sourceListId;
     String side;
-
-    public Trade(String trade_account, String type) {
-    }
 
     public Integer getTradeId() {
         return tradeId;

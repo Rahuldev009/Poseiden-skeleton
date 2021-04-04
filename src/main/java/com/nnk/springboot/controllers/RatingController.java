@@ -1,5 +1,6 @@
 package com.nnk.springboot.controllers;
 
+import com.nnk.springboot.domain.CurvePoint;
 import com.nnk.springboot.domain.Rating;
 import com.nnk.springboot.service.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,13 +30,12 @@ public class RatingController {
     public String home(Model model)
     {
         List<Rating> ratings = ratingService.getAllByRating();
-        model.addAttribute("allRatings",ratings);
+        model.addAttribute("ratings",ratings);
         return "rating/list";
     }
 
     @GetMapping("/rating/add")
     public String addRatingForm(Rating rating) {
-        ratingService.saveRating(rating);
         return "rating/add";
     }
 
@@ -43,7 +43,7 @@ public class RatingController {
     public String validate(@Valid Rating rating, BindingResult result, Model model) {
         if (!result.hasErrors()) {
             ratingService.saveRating(rating);
-            model.addAttribute("allRatings",ratingService.getAllByRating());
+            model.addAttribute("ratings",ratingService.getAllByRating());
             return "redirect:/rating/list";
         }
         return "rating/add";
@@ -51,7 +51,8 @@ public class RatingController {
 
     @GetMapping("/rating/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        // TODO: get Rating by Id and to model then show to the form
+        Rating rating = ratingService.getByRating(id);
+        model.addAttribute("rating", rating);
         return "rating/update";
     }
 
@@ -62,15 +63,15 @@ public class RatingController {
             return "rating/update";
         }
         rating.setId(id);
-        ratingService.saveRating(rating);
-        model.addAttribute("allRatings",ratingService.getAllByRating());
+        ratingService.updateRating(rating);
+        model.addAttribute("ratings",ratingService.getAllByRating());
         return "redirect:/rating/list";
     }
 
     @GetMapping("/rating/delete/{id}")
     public String deleteRating(@PathVariable("id") Integer id, Model model) {
         ratingService.deleteRating(id);
-        model.addAttribute("allRatings",ratingService.getAllByRating());
+        model.addAttribute("ratings",ratingService.getAllByRating());
         return "redirect:/rating/list";
     }
 

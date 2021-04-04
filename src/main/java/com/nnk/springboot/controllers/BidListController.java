@@ -2,6 +2,8 @@ package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.service.BidListService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +19,7 @@ import java.util.List;
 
 @Controller
 public class BidListController {
-    // TODO: Inject Bid service
+    private static final Logger logger = LogManager.getLogger(BidListController.class);
 
     private BidListService bidListService;
 
@@ -29,13 +31,13 @@ public class BidListController {
     @RequestMapping("/bidList/list")
     public String home(Model model) {
         List<BidList> bidLists = bidListService.getAllBidList();
-        model.addAttribute("allBidLists", bidLists);
+        model.addAttribute("bidLists", bidLists);
+        logger.info("all bidLists list"+ bidLists.toString());
         return "bidList/list";
     }
 
     @GetMapping("/bidList/add")
     public String addBidForm(BidList bid) {
-        bidListService.saveBidList(bid);
         return "bidList/add";
     }
 
@@ -43,7 +45,7 @@ public class BidListController {
     public String validate(@Valid BidList bid, BindingResult result, Model model) {
         if (!result.hasErrors()) {
             bidListService.saveBidList(bid);
-            model.addAttribute("allBidLists", bidListService.getAllBidList());
+            model.addAttribute("bidLists", bidListService.getAllBidList());
             return "redirect:/bidList/list";
         }
         return "bidList/add";
@@ -51,7 +53,8 @@ public class BidListController {
 
     @GetMapping("/bidList/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        // TODO: get Bid by Id and to model then show to the form
+        BidList bidList = bidListService.getBidListById(id);
+        model.addAttribute("bidList", bidList);
         return "bidList/update";
     }
 
@@ -62,15 +65,15 @@ public class BidListController {
             return "bidList/update";
         }
         bidList.setBidListId(id);
-        bidListService.saveBidList(bidList);
-        model.addAttribute("allBidLists", bidListService.getAllBidList());
+        bidListService.updateBidList(bidList);
+        model.addAttribute("bidLists", bidListService.getAllBidList());
         return "redirect:/bidList/list";
     }
 
     @GetMapping("/bidList/delete/{id}")
     public String deleteBid(@PathVariable("id") Integer id, Model model) {
         bidListService.deleteBidList(id);
-        model.addAttribute("allBidLists", bidListService.getAllBidList());
+        model.addAttribute("bidLists", bidListService.getAllBidList());
         return "redirect:/bidList/list";
     }
 
