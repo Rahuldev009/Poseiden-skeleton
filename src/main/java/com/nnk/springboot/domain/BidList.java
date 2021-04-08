@@ -35,8 +35,6 @@ public class BidList {
     String sourceListId;
     String side;
 
-
-
     public Integer getBidListId() {
         return BidListId;
     }

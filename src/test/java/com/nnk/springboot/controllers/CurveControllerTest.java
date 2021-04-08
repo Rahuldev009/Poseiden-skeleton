@@ -1,0 +1,95 @@
+package com.nnk.springboot.controllers;
+
+import com.nnk.springboot.domain.CurvePoint;
+import com.nnk.springboot.service.CurvePointService;
+import org.junit.Assert;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class CurveControllerTest {
+
+    @Mock
+    CurvePointService curvePointService;
+
+    @InjectMocks
+    CurveController curveController;
+
+    @Mock
+    Model model;
+
+    @Mock
+    BindingResult bindingResult;
+
+    @Test
+    public void home() {
+        String s = curveController.home(model);
+        Assert.assertEquals("curvePoint/list", s);
+    }
+
+    @Test
+    public void addBidForm() {
+        CurvePoint curvePoint = new CurvePoint();
+        curvePoint.setId(1);
+        curvePoint.setCurveId(10);
+        curvePoint.setTerm(10d);
+        curvePoint.setValue(30d);
+        String s = curveController.addBidForm(curvePoint);
+        Assert.assertEquals("curvePoint/add", s);
+    }
+
+    @Test
+    public void validate() {
+        CurvePoint curvePoint = new CurvePoint();
+        curvePoint.setId(1);
+        curvePoint.setCurveId(10);
+        curvePoint.setTerm(10d);
+        curvePoint.setValue(30d);
+        String s = curveController.validate(curvePoint,bindingResult,model);
+        Assert.assertEquals("redirect:/curvePoint/list", s);
+    }
+
+    @Test
+    public void showUpdateForm() {
+        CurvePoint curvePoint = new CurvePoint();
+        curvePoint.setId(1);
+        curvePoint.setCurveId(10);
+        curvePoint.setTerm(10d);
+        curvePoint.setValue(30d);
+        String s = curveController.showUpdateForm(1,model);
+        Assert.assertEquals("curvePoint/update", s);
+    }
+
+    @Test
+    public void updateBid() {
+        CurvePoint curvePoint = new CurvePoint();
+        curvePoint.setId(1);
+        curvePoint.setCurveId(10);
+        curvePoint.setTerm(10d);
+        curvePoint.setValue(30d);
+        String s = curveController.updateBid(1,curvePoint,bindingResult,model);
+        Assert.assertEquals("redirect:/curvePoint/list", s);
+    }
+
+    @Test
+    public void deleteBid() {
+        CurvePoint curvePoint = new CurvePoint();
+        curvePoint.setId(1);
+        curvePoint.setCurveId(10);
+        curvePoint.setTerm(10d);
+        curvePoint.setValue(30d);
+        String s = curveController.deleteBid(1,model);
+        Assert.assertEquals("redirect:/curvePoint/list", s);
+    }
+
+}

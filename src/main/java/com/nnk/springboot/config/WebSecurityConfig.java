@@ -41,18 +41,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/css/bootstrap.min.css").permitAll()
+                .antMatchers("/").permitAll()
+                .antMatchers("/login").permitAll()
+                .antMatchers("/user/list").permitAll()
                 .antMatchers("/user/add").permitAll()
-                .anyRequest().permitAll()
-                .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/user").hasRole("USER")
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .usernameParameter("username")
                 .defaultSuccessUrl("/bidList/list")
                 .failureUrl("/login?error=true")
                 .permitAll()
+                .and().logout()
+                .logoutUrl("/app-logout").invalidateHttpSession(true)
                 .and()
                 .exceptionHandling().accessDeniedPage("/403");
+
 
     }
 }
