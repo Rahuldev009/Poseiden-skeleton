@@ -15,7 +15,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     UserService userService;
 
-
+    /**
+     * search for the user with the given username
+     * @param s this is the username to be searched
+     * @return object of the CustomUserDetails
+     * @throws UsernameNotFoundException
+     */
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
@@ -23,7 +28,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("User not Found");
         }
-        //logger.info("user info" + user.toString());
         return new CustomUserDetails(user);
     }
 }

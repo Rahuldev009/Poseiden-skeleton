@@ -17,26 +17,47 @@ public class CurvePointServiceImpl implements CurvePointService {
         this.curvePointRepository = curvePointRepository;
     }
 
+    /**
+     * find the curvepoint item by Id
+     * @param id this is the id of curvepoint item to be searched
+     * @return curvepoint object with the same Id
+     */
     @Override
     public CurvePoint getCurvePointById(int id) {
         return curvePointRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid curvePoint Id:" + id));
     }
 
+    /**
+     * find all items of curvepoint
+     * @return list of all curvepoint items
+     */
     @Override
     public List<CurvePoint> getAllCurvePoint() {
         return curvePointRepository.findAll();
     }
 
+    /**
+     * save the curvepoint item in the DB
+     * @param curvePoint this is the item to be saved in the DB
+     */
     @Override
     public void saveCurvePoint(CurvePoint curvePoint) {
         curvePointRepository.save(curvePoint);
     }
 
+    /**
+     * update the curvepoint item in the DB
+     * @param curvePoint this is the item to be updated in the DB
+     */
     @Override
     public void updateCurvePoint(CurvePoint curvePoint) {
         curvePointRepository.save(curvePoint);
     }
 
+    /**
+     * delete the curvepoint item in the DB
+     * @param id this is the id of curvepoint item to be deleted
+     */
     @Override
     public void deleteCurvePoint(int id) {
         CurvePoint curvePoint = curvePointRepository.findById(id).orElseThrow(() ->
