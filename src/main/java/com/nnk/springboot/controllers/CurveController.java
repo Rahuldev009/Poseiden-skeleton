@@ -35,6 +35,7 @@ public class CurveController {
     @RequestMapping("/curvePoint/list")
     public String home(Model model) {
         List<CurvePoint> curvePoints = curvePointService.getAllCurvePoint();
+        logger.info("all curvePoints list"+ curvePoints.toString());
         model.addAttribute("curvePoints", curvePoints);
         return "curvePoint/list";
     }
@@ -46,6 +47,7 @@ public class CurveController {
      */
     @GetMapping("/curvePoint/add")
     public String addBidForm(CurvePoint bid) {
+        logger.info("curvePoint to be added ");
         return "curvePoint/add";
     }
 
@@ -59,6 +61,7 @@ public class CurveController {
     @PostMapping("/curvePoint/validate")
     public String validate(@Valid CurvePoint curvePoint, BindingResult result, Model model) {
         if (!result.hasErrors()) {
+            logger.info("curvePoint to be added "+ curvePoint.toString());
             curvePointService.saveCurvePoint(curvePoint);
             model.addAttribute("curvePoints", curvePointService.getAllCurvePoint());
             return "redirect:/curvePoint/list";
@@ -75,6 +78,7 @@ public class CurveController {
     @GetMapping("/curvePoint/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         CurvePoint curvePoint = curvePointService.getCurvePointById(id);
+        logger.info("curvePoint to be updated "+ curvePoint.toString());
         model.addAttribute("curvePoint", curvePoint);
         return "curvePoint/update";
     }
@@ -94,6 +98,7 @@ public class CurveController {
             return "curvePoint/update";
         }
         curvePoint.setId(id);
+        logger.info("curvePoint to be updated "+ curvePoint.toString());
         curvePointService.updateCurvePoint(curvePoint);
         model.addAttribute("curvePoints", curvePointService.getAllCurvePoint());
         return "redirect:/curvePoint/list";
@@ -107,6 +112,7 @@ public class CurveController {
      */
     @GetMapping("/curvePoint/delete/{id}")
     public String deleteBid(@PathVariable("id") Integer id, Model model) {
+        logger.info("curvePoint to be deleted "+ curvePointService.getCurvePointById(id).toString());
         curvePointService.deleteCurvePoint(id);
         model.addAttribute("curvePoints", curvePointService.getAllCurvePoint());
         return "redirect:/curvePoint/list";

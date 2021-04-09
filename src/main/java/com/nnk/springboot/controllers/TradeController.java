@@ -35,6 +35,7 @@ public class TradeController {
     @RequestMapping("/trade/list")
     public String home(Model model) {
         List<Trade> trades = tradeService.getAllTrade();
+        logger.info("all trades list"+ trades.toString());
         model.addAttribute("trades", trades);
         return "trade/list";
     }
@@ -46,6 +47,7 @@ public class TradeController {
      */
     @GetMapping("/trade/add")
     public String addUser(Trade bid) {
+        logger.info("trade to be added ");
         return "trade/add";
     }
 
@@ -59,6 +61,7 @@ public class TradeController {
     @PostMapping("/trade/validate")
     public String validate(@Valid Trade trade, BindingResult result, Model model) {
         if (!result.hasErrors()) {
+            logger.info("trade to be added "+ trade.toString());
             tradeService.saveTrade(trade);
             model.addAttribute("trades", tradeService.getAllTrade());
             return "redirect:/trade/list";
@@ -75,6 +78,7 @@ public class TradeController {
     @GetMapping("/trade/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         Trade trade = tradeService.getByIdTrade(id);
+        logger.info("trade to be updated "+ trade.toString());
         model.addAttribute("trade", trade);
         return "trade/update";
     }
@@ -94,6 +98,7 @@ public class TradeController {
             return "trade/update";
         }
         trade.setTradeId(id);
+        logger.info("trade to be updated "+ trade.toString());
         tradeService.updateTrade(trade);
         model.addAttribute("trades", tradeService.getAllTrade());
         return "redirect:/trade/list";
@@ -107,6 +112,7 @@ public class TradeController {
      */
     @GetMapping("/trade/delete/{id}")
     public String deleteTrade(@PathVariable("id") Integer id, Model model) {
+        logger.info("trade to be deleted "+ tradeService.getByIdTrade(id).toString());
         tradeService.deleteTrade(id);
         model.addAttribute("trades", tradeService.getAllTrade());
         return "redirect:/trade/list";

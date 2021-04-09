@@ -36,6 +36,7 @@ public class RatingController {
     public String home(Model model)
     {
         List<Rating> ratings = ratingService.getAllByRating();
+        logger.info("all ratings list"+ ratings.toString());
         model.addAttribute("ratings",ratings);
         return "rating/list";
     }
@@ -47,6 +48,7 @@ public class RatingController {
      */
     @GetMapping("/rating/add")
     public String addRatingForm(Rating rating) {
+        logger.info("rating to be added ");
         return "rating/add";
     }
 
@@ -60,6 +62,7 @@ public class RatingController {
     @PostMapping("/rating/validate")
     public String validate(@Valid Rating rating, BindingResult result, Model model) {
         if (!result.hasErrors()) {
+            logger.info("rating to be added "+ rating.toString());
             ratingService.saveRating(rating);
             model.addAttribute("ratings",ratingService.getAllByRating());
             return "redirect:/rating/list";
@@ -76,6 +79,7 @@ public class RatingController {
     @GetMapping("/rating/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         Rating rating = ratingService.getByRating(id);
+        logger.info("rating to be updated "+ rating.toString());
         model.addAttribute("rating", rating);
         return "rating/update";
     }
@@ -95,6 +99,7 @@ public class RatingController {
             return "rating/update";
         }
         rating.setId(id);
+        logger.info("curvePoint to be updated "+ rating.toString());
         ratingService.updateRating(rating);
         model.addAttribute("ratings",ratingService.getAllByRating());
         return "redirect:/rating/list";
@@ -108,6 +113,7 @@ public class RatingController {
      */
     @GetMapping("/rating/delete/{id}")
     public String deleteRating(@PathVariable("id") Integer id, Model model) {
+        logger.info("rating to be deleted "+ ratingService.getByRating(id).toString());
         ratingService.deleteRating(id);
         model.addAttribute("ratings",ratingService.getAllByRating());
         return "redirect:/rating/list";
