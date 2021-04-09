@@ -48,6 +48,7 @@ public class UserController {
      */
     @GetMapping("/user/add")
     public String addUser(User bid) {
+        logger.info("user to be added ");
         return "user/add";
     }
 
@@ -63,6 +64,7 @@ public class UserController {
         if (!result.hasErrors()) {
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             user.setPassword(encoder.encode(user.getPassword()));
+            logger.info("user to be added "+ user.toString());
             userService.saveUser(user);
             model.addAttribute("users", userService.getAllUser());
             return "redirect:/user/list";
@@ -80,6 +82,7 @@ public class UserController {
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         User user = userService.getByIdUser(id);
         user.setPassword("");
+        logger.info("user to be updated "+ user.toString());
         model.addAttribute("user", user);
         return "user/update";
     }
@@ -102,6 +105,7 @@ public class UserController {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         user.setPassword(encoder.encode(user.getPassword()));
         user.setId(id);
+        logger.info("user to be updated "+ user.toString());
         userService.updateUser(user);
         model.addAttribute("users", userService.getAllUser());
         return "redirect:/user/list";
@@ -115,6 +119,7 @@ public class UserController {
      */
     @GetMapping("/user/delete/{id}")
     public String deleteUser(@PathVariable("id") Integer id, Model model) {
+        logger.info("user to be deleted "+ userService.getByIdUser(id).toString());
         userService.deleteUser(id);
         model.addAttribute("users", userService.getAllUser());
         return "redirect:/user/list";

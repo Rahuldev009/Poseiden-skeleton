@@ -48,6 +48,7 @@ public class BidListController {
      */
     @GetMapping("/bidList/add")
     public String addBidForm(BidList bid) {
+        logger.info("bidlist to be added ");
         return "bidList/add";
     }
 
@@ -61,6 +62,7 @@ public class BidListController {
     @PostMapping("/bidList/validate")
     public String validate(@Valid BidList bid, BindingResult result, Model model) {
         if (!result.hasErrors()) {
+            logger.info("bidlist to be added "+ bid.toString());
             bidListService.saveBidList(bid);
             model.addAttribute("bidLists", bidListService.getAllBidList());
             return "redirect:/bidList/list";
@@ -77,6 +79,7 @@ public class BidListController {
     @GetMapping("/bidList/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         BidList bidList = bidListService.getBidListById(id);
+        logger.info("bidlist to be updated "+ bidList.toString());
         model.addAttribute("bidList", bidList);
         return "bidList/update";
     }
@@ -96,6 +99,7 @@ public class BidListController {
             return "bidList/update";
         }
         bidList.setBidListId(id);
+        logger.info("bidlist to be updated "+ bidList.toString());
         bidListService.updateBidList(bidList);
         model.addAttribute("bidLists", bidListService.getAllBidList());
         return "redirect:/bidList/list";
@@ -109,6 +113,7 @@ public class BidListController {
      */
     @GetMapping("/bidList/delete/{id}")
     public String deleteBid(@PathVariable("id") Integer id, Model model) {
+        logger.info("bidlist to be deleted "+ bidListService.getBidListById(id).toString());
         bidListService.deleteBidList(id);
         model.addAttribute("bidLists", bidListService.getAllBidList());
         return "redirect:/bidList/list";

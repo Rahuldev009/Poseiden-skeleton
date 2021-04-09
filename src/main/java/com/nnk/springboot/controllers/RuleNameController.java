@@ -35,6 +35,7 @@ public class RuleNameController {
     @RequestMapping("/ruleName/list")
     public String home(Model model) {
         List<RuleName> ruleNames = ruleNameService.getAllRuleName();
+        logger.info("all ruleNames list"+ ruleNames.toString());
         model.addAttribute("ruleNames", ruleNames);
         return "ruleName/list";
     }
@@ -46,6 +47,7 @@ public class RuleNameController {
      */
     @GetMapping("/ruleName/add")
     public String addRuleForm(RuleName bid) {
+        logger.info("ruleName to be added ");
         return "ruleName/add";
     }
 
@@ -59,6 +61,7 @@ public class RuleNameController {
     @PostMapping("/ruleName/validate")
     public String validate(@Valid RuleName ruleName, BindingResult result, Model model) {
         if (!result.hasErrors()) {
+            logger.info("ruleName to be added "+ ruleName.toString());
             ruleNameService.saveRuleName(ruleName);
             model.addAttribute("ruleNames", ruleNameService.getAllRuleName());
             return "redirect:/ruleName/list";
@@ -75,6 +78,7 @@ public class RuleNameController {
     @GetMapping("/ruleName/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         RuleName ruleName = ruleNameService.getById(id);
+        logger.info("ruleName to be updated "+ ruleName.toString());
         model.addAttribute("ruleName", ruleName);
         return "ruleName/update";
     }
@@ -94,6 +98,7 @@ public class RuleNameController {
             return "ruleName/update";
         }
         ruleName.setId(id);
+        logger.info("ruleName to be updated "+ ruleName.toString());
         ruleNameService.updateRuleName(ruleName);
         model.addAttribute("ruleNames", ruleNameService.getAllRuleName());
         return "redirect:/ruleName/list";
@@ -107,6 +112,7 @@ public class RuleNameController {
      */
     @GetMapping("/ruleName/delete/{id}")
     public String deleteRuleName(@PathVariable("id") Integer id, Model model) {
+        logger.info("ruleName to be deleted "+ ruleNameService.getById(id).toString());
         ruleNameService.deleteRuleName(id);
         model.addAttribute("ruleNames", ruleNameService.getAllRuleName());
         return "redirect:/ruleName/list";
