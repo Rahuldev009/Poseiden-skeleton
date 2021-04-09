@@ -13,7 +13,7 @@ public class RatingServiceImpl implements RatingService {
     private RatingRepository ratingRepository;
 
     @Autowired
-    public RatingServiceImpl(RatingRepository ratingRepository) {
+    public void RatingServiceImpl(RatingRepository ratingRepository) {
         this.ratingRepository = ratingRepository;
     }
 

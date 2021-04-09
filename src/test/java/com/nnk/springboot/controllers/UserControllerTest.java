@@ -21,7 +21,7 @@ public class UserControllerTest {
     UserService userService;
 
     @InjectMocks
-    UserController userController ;
+    UserController userController;
 
     @Mock
     Model model;
@@ -55,7 +55,7 @@ public class UserControllerTest {
         user.setUsername("xyzabc");
         user.setPassword("123456");
         user.setRole("ADMIN");
-        String s = userController.validate(user,bindingResult,model);
+        String s = userController.validate(user, bindingResult, model);
         Assert.assertEquals("redirect:/user/list", s);
     }
 
@@ -68,7 +68,7 @@ public class UserControllerTest {
         user.setUsername("xyzabc");
         user.setPassword("123456");
         user.setRole("ADMIN");
-        String s = userController.updateUser(1,user,bindingResult,model);
+        String s = userController.updateUser(1, user, bindingResult, model);
         Assert.assertEquals("redirect:/user/list", s);
     }
 
@@ -80,7 +80,7 @@ public class UserControllerTest {
         user.setUsername("xyzabc");
         user.setPassword("123456");
         user.setRole("ADMIN");
-        String s = userController.deleteUser(1,model);
+        String s = userController.deleteUser(1, model);
         Assert.assertEquals("redirect:/user/list", s);
     }
 }

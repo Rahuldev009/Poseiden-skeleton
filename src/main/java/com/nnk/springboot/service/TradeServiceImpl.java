@@ -13,7 +13,7 @@ public class TradeServiceImpl implements TradeService {
     private TradeRepository tradeRepository;
 
     @Autowired
-    public TradeServiceImpl(TradeRepository tradeRepository) {
+    public void TradeServiceImpl(TradeRepository tradeRepository) {
         this.tradeRepository = tradeRepository;
     }
 

@@ -39,8 +39,8 @@ public class TradeControllerTest {
     public void addUser() {
         Trade trade = new Trade();
         trade.setTradeId(1);
-		trade.setAccount("Trade Account");
-		trade.setType("Type");
+        trade.setAccount("Trade Account");
+        trade.setType("Type");
         String s = tradeController.addUser(trade);
         Assert.assertEquals("trade/add", s);
     }
@@ -51,7 +51,7 @@ public class TradeControllerTest {
         trade.setTradeId(1);
         trade.setAccount("Trade Account");
         trade.setType("Type");
-        String s = tradeController.validate(trade,bindingResult,model);
+        String s = tradeController.validate(trade, bindingResult, model);
         Assert.assertEquals("redirect:/trade/list", s);
     }
 
@@ -61,7 +61,7 @@ public class TradeControllerTest {
         trade.setTradeId(1);
         trade.setAccount("Trade Account");
         trade.setType("Type");
-        String s = tradeController.showUpdateForm(1,model);
+        String s = tradeController.showUpdateForm(1, model);
         Assert.assertEquals("trade/update", s);
     }
 
@@ -71,7 +71,7 @@ public class TradeControllerTest {
         trade.setTradeId(1);
         trade.setAccount("Trade Account");
         trade.setType("Type");
-        String s = tradeController.updateTrade(1,trade,bindingResult,model);
+        String s = tradeController.updateTrade(1, trade, bindingResult, model);
         Assert.assertEquals("redirect:/trade/list", s);
     }
 
@@ -81,7 +81,7 @@ public class TradeControllerTest {
         trade.setTradeId(1);
         trade.setAccount("Trade Account");
         trade.setType("Type");
-        String s = tradeController.deleteTrade(1,model);
+        String s = tradeController.deleteTrade(1, model);
         Assert.assertEquals("redirect:/trade/list", s);
     }
 

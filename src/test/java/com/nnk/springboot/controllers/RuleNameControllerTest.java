@@ -38,12 +38,12 @@ public class RuleNameControllerTest {
     public void addRuleForm() {
         RuleName rule = new RuleName();
         rule.setId(1);
-		rule.setName("Rule Name");
-		rule.setDescription("Description");
-		rule.setJson("Json");
-		rule.setTemplate("Template");
-		rule.setSqlStr("SQL");
-		rule.setSqlPart("SQL Part");
+        rule.setName("Rule Name");
+        rule.setDescription("Description");
+        rule.setJson("Json");
+        rule.setTemplate("Template");
+        rule.setSqlStr("SQL");
+        rule.setSqlPart("SQL Part");
         String s = ruleNameController.addRuleForm(rule);
         Assert.assertEquals("ruleName/add", s);
     }
@@ -58,7 +58,7 @@ public class RuleNameControllerTest {
         rule.setTemplate("Template");
         rule.setSqlStr("SQL");
         rule.setSqlPart("SQL Part");
-        String s = ruleNameController.validate(rule,bindingResult,model);
+        String s = ruleNameController.validate(rule, bindingResult, model);
         Assert.assertEquals("redirect:/ruleName/list", s);
     }
 
@@ -72,7 +72,7 @@ public class RuleNameControllerTest {
         rule.setTemplate("Template");
         rule.setSqlStr("SQL");
         rule.setSqlPart("SQL Part");
-        String s = ruleNameController.showUpdateForm(1,model);
+        String s = ruleNameController.showUpdateForm(1, model);
         Assert.assertEquals("ruleName/update", s);
     }
 
@@ -86,7 +86,7 @@ public class RuleNameControllerTest {
         rule.setTemplate("Template");
         rule.setSqlStr("SQL");
         rule.setSqlPart("SQL Part");
-        String s = ruleNameController.updateRuleName(1,rule,bindingResult,model);
+        String s = ruleNameController.updateRuleName(1, rule, bindingResult, model);
         Assert.assertEquals("redirect:/ruleName/list", s);
     }
 
@@ -100,7 +100,7 @@ public class RuleNameControllerTest {
         rule.setTemplate("Template");
         rule.setSqlStr("SQL");
         rule.setSqlPart("SQL Part");
-        String s = ruleNameController.deleteRuleName(1,model);
+        String s = ruleNameController.deleteRuleName(1, model);
         Assert.assertEquals("redirect:/ruleName/list", s);
     }
 

@@ -13,7 +13,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public void UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
