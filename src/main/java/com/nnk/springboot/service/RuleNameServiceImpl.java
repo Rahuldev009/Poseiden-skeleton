@@ -13,7 +13,7 @@ public class RuleNameServiceImpl implements RuleNameService {
     private RuleNameRepository ruleNameRepository;
 
     @Autowired
-    public RuleNameServiceImpl(RuleNameRepository ruleNameRepository) {
+    public void RuleNameServiceImpl(RuleNameRepository ruleNameRepository) {
         this.ruleNameRepository = ruleNameRepository;
     }
 

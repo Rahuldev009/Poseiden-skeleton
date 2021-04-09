@@ -55,7 +55,7 @@ public class RatingControllerTest {
         rating.setSandPRating("Sand PRating");
         rating.setFitchRating("Fitch Rating");
         rating.setOrderNumber(10);
-        String s = ratingController.validate(rating,bindingResult,model);
+        String s = ratingController.validate(rating, bindingResult, model);
         Assert.assertEquals("redirect:/rating/list", s);
     }
 
@@ -67,7 +67,7 @@ public class RatingControllerTest {
         rating.setSandPRating("Sand PRating");
         rating.setFitchRating("Fitch Rating");
         rating.setOrderNumber(10);
-        String s = ratingController.showUpdateForm(1,model);
+        String s = ratingController.showUpdateForm(1, model);
         Assert.assertEquals("rating/update", s);
     }
 
@@ -79,7 +79,7 @@ public class RatingControllerTest {
         rating.setSandPRating("Sand PRating");
         rating.setFitchRating("Fitch Rating");
         rating.setOrderNumber(10);
-        String s = ratingController.updateRating(1,rating,bindingResult,model);
+        String s = ratingController.updateRating(1, rating, bindingResult, model);
         Assert.assertEquals("redirect:/rating/list", s);
     }
 
@@ -91,7 +91,7 @@ public class RatingControllerTest {
         rating.setSandPRating("Sand PRating");
         rating.setFitchRating("Fitch Rating");
         rating.setOrderNumber(10);
-        String s = ratingController.deleteRating(1,model);
+        String s = ratingController.deleteRating(1, model);
         Assert.assertEquals("redirect:/rating/list", s);
     }
 

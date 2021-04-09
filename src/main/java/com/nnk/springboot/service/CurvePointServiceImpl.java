@@ -13,7 +13,7 @@ public class CurvePointServiceImpl implements CurvePointService {
     private CurvePointRepository curvePointRepository;
 
     @Autowired
-    public CurvePointServiceImpl(CurvePointRepository curvePointRepository) {
+    public void CurvePointServiceImpl(CurvePointRepository curvePointRepository) {
         this.curvePointRepository = curvePointRepository;
     }
 

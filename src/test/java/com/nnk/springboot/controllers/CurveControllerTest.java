@@ -3,12 +3,10 @@ package com.nnk.springboot.controllers;
 import com.nnk.springboot.domain.CurvePoint;
 import com.nnk.springboot.service.CurvePointService;
 import org.junit.Assert;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.ui.Model;
@@ -55,7 +53,7 @@ public class CurveControllerTest {
         curvePoint.setCurveId(10);
         curvePoint.setTerm(10d);
         curvePoint.setValue(30d);
-        String s = curveController.validate(curvePoint,bindingResult,model);
+        String s = curveController.validate(curvePoint, bindingResult, model);
         Assert.assertEquals("redirect:/curvePoint/list", s);
     }
 
@@ -66,7 +64,7 @@ public class CurveControllerTest {
         curvePoint.setCurveId(10);
         curvePoint.setTerm(10d);
         curvePoint.setValue(30d);
-        String s = curveController.showUpdateForm(1,model);
+        String s = curveController.showUpdateForm(1, model);
         Assert.assertEquals("curvePoint/update", s);
     }
 
@@ -77,7 +75,7 @@ public class CurveControllerTest {
         curvePoint.setCurveId(10);
         curvePoint.setTerm(10d);
         curvePoint.setValue(30d);
-        String s = curveController.updateBid(1,curvePoint,bindingResult,model);
+        String s = curveController.updateBid(1, curvePoint, bindingResult, model);
         Assert.assertEquals("redirect:/curvePoint/list", s);
     }
 
@@ -88,7 +86,7 @@ public class CurveControllerTest {
         curvePoint.setCurveId(10);
         curvePoint.setTerm(10d);
         curvePoint.setValue(30d);
-        String s = curveController.deleteBid(1,model);
+        String s = curveController.deleteBid(1, model);
         Assert.assertEquals("redirect:/curvePoint/list", s);
     }
 
