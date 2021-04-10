@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.ui.Model;
@@ -80,6 +81,7 @@ public class UserControllerTest {
         user.setUsername("xyzabc");
         user.setPassword("123456");
         user.setRole("ADMIN");
+        Mockito.when(userService.getByIdUser(1)).thenReturn(user);
         String s = userController.deleteUser(1, model);
         Assert.assertEquals("redirect:/user/list", s);
     }

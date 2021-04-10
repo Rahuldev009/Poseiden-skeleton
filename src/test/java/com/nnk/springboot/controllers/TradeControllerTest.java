@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.ui.Model;
@@ -61,6 +62,7 @@ public class TradeControllerTest {
         trade.setTradeId(1);
         trade.setAccount("Trade Account");
         trade.setType("Type");
+        Mockito.when(tradeService.getByIdTrade(1)).thenReturn(trade);
         String s = tradeController.showUpdateForm(1, model);
         Assert.assertEquals("trade/update", s);
     }
@@ -81,6 +83,7 @@ public class TradeControllerTest {
         trade.setTradeId(1);
         trade.setAccount("Trade Account");
         trade.setType("Type");
+        Mockito.when(tradeService.getByIdTrade(1)).thenReturn(trade);
         String s = tradeController.deleteTrade(1, model);
         Assert.assertEquals("redirect:/trade/list", s);
     }
