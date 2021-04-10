@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.ui.Model;
@@ -64,6 +65,7 @@ public class BidListControllerTest {
         bid1.setAccount("Account Test");
         bid1.setType("Type Test");
         bid1.setBidQuantity(10d);
+        Mockito.when(bidListService.getBidListById(1)).thenReturn(bid1);
         String s = bidListController.showUpdateForm(1, model);
         Assert.assertEquals("bidList/update", s);
     }
@@ -86,6 +88,7 @@ public class BidListControllerTest {
         bid.setAccount("Account Test");
         bid.setType("Type Test");
         bid.setBidQuantity(10d);
+        Mockito.when(bidListService.getBidListById(1)).thenReturn(bid);
         String s = bidListController.deleteBid(1, model);
         Assert.assertEquals("redirect:/bidList/list", s);
     }

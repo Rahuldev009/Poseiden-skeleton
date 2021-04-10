@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.ui.Model;
@@ -72,6 +73,7 @@ public class RuleNameControllerTest {
         rule.setTemplate("Template");
         rule.setSqlStr("SQL");
         rule.setSqlPart("SQL Part");
+        Mockito.when(ruleNameService.getById(1)).thenReturn(rule);
         String s = ruleNameController.showUpdateForm(1, model);
         Assert.assertEquals("ruleName/update", s);
     }
@@ -100,6 +102,7 @@ public class RuleNameControllerTest {
         rule.setTemplate("Template");
         rule.setSqlStr("SQL");
         rule.setSqlPart("SQL Part");
+        Mockito.when(ruleNameService.getById(1)).thenReturn(rule);
         String s = ruleNameController.deleteRuleName(1, model);
         Assert.assertEquals("redirect:/ruleName/list", s);
     }

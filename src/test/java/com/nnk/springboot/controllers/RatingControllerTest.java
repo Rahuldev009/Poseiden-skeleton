@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.ui.Model;
@@ -67,6 +68,7 @@ public class RatingControllerTest {
         rating.setSandPRating("Sand PRating");
         rating.setFitchRating("Fitch Rating");
         rating.setOrderNumber(10);
+        Mockito.when(ratingService.getByRating(1)).thenReturn(rating);
         String s = ratingController.showUpdateForm(1, model);
         Assert.assertEquals("rating/update", s);
     }
@@ -91,6 +93,7 @@ public class RatingControllerTest {
         rating.setSandPRating("Sand PRating");
         rating.setFitchRating("Fitch Rating");
         rating.setOrderNumber(10);
+        Mockito.when(ratingService.getByRating(1)).thenReturn(rating);
         String s = ratingController.deleteRating(1, model);
         Assert.assertEquals("redirect:/rating/list", s);
     }

@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.ui.Model;
@@ -64,6 +65,7 @@ public class CurveControllerTest {
         curvePoint.setCurveId(10);
         curvePoint.setTerm(10d);
         curvePoint.setValue(30d);
+        Mockito.when(curvePointService.getCurvePointById(1)).thenReturn(curvePoint);
         String s = curveController.showUpdateForm(1, model);
         Assert.assertEquals("curvePoint/update", s);
     }
@@ -86,6 +88,7 @@ public class CurveControllerTest {
         curvePoint.setCurveId(10);
         curvePoint.setTerm(10d);
         curvePoint.setValue(30d);
+        Mockito.when(curvePointService.getCurvePointById(1)).thenReturn(curvePoint);
         String s = curveController.deleteBid(1, model);
         Assert.assertEquals("redirect:/curvePoint/list", s);
     }
