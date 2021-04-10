@@ -23,19 +23,19 @@ public class LoginControllerTest {
     UserRepository userRepository;
 
     @Test
-    public void login() {
+    public void login_validateResponseURL() {
         ModelAndView modelAndView = loginController.login();
         Assert.assertEquals("login", modelAndView.getViewName());
     }
 
     @Test
-    public void getAllUserArticles() {
+    public void getAllUserArticles_validateResponseURL() {
         ModelAndView modelAndView = loginController.getAllUserArticles();
         Assert.assertEquals("user/list", modelAndView.getViewName());
     }
 
     @Test
-    public void error() {
+    public void error_validateResponseURL() {
         ModelAndView modelAndView = loginController.error();
         Assert.assertEquals("403", modelAndView.getViewName());
     }

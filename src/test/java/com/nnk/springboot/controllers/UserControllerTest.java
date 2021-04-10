@@ -31,13 +31,13 @@ public class UserControllerTest {
     BindingResult bindingResult;
 
     @Test
-    public void home() {
+    public void home_validateResponseURL() {
         String s = userController.home(model);
         Assert.assertEquals("user/list", s);
     }
 
     @Test
-    public void addUser() {
+    public void addUser_validateResponseURL() {
         User user = new User();
         user.setId(1);
         user.setFullname("xyz");
@@ -49,7 +49,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void validate() {
+    public void validate_validateResponseURL() {
         User user = new User();
         user.setId(1);
         user.setFullname("xyz");
@@ -62,7 +62,7 @@ public class UserControllerTest {
 
 
     @Test
-    public void updateUser() {
+    public void updateUser_validateResponseURL() {
         User user = new User();
         user.setId(1);
         user.setFullname("xyz");
@@ -74,7 +74,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void deleteUser() {
+    public void deleteUser_validateResponseURL() {
         User user = new User();
         user.setId(1);
         user.setFullname("xyz");

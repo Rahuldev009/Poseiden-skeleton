@@ -37,7 +37,7 @@ public class RatingControllerTest {
     }
 
     @Test
-    public void addRatingForm() {
+    public void addRatingForm_validateResponseURL() {
         Rating rating = new Rating();
         rating.setId(1);
         rating.setMoodysRating("Moodys Rating");
@@ -49,7 +49,7 @@ public class RatingControllerTest {
     }
 
     @Test
-    public void validate() {
+    public void validate_validateResponseURL() {
         Rating rating = new Rating();
         rating.setId(1);
         rating.setMoodysRating("Moodys Rating");
@@ -61,7 +61,7 @@ public class RatingControllerTest {
     }
 
     @Test
-    public void showUpdateForm() {
+    public void showUpdateForm_validateResponseURL() {
         Rating rating = new Rating();
         rating.setId(1);
         rating.setMoodysRating("Moodys Rating");
@@ -74,7 +74,7 @@ public class RatingControllerTest {
     }
 
     @Test
-    public void updateRating() {
+    public void updateRating_validateResponseURL() {
         Rating rating = new Rating();
         rating.setId(1);
         rating.setMoodysRating("Moodys Rating");
@@ -86,7 +86,7 @@ public class RatingControllerTest {
     }
 
     @Test
-    public void deleteRating() {
+    public void deleteRating_validateResponseURL() {
         Rating rating = new Rating();
         rating.setId(1);
         rating.setMoodysRating("Moodys Rating");

@@ -30,13 +30,13 @@ public class RuleNameControllerTest {
     BindingResult bindingResult;
 
     @Test
-    public void home() {
+    public void home_validateResponseURL() {
         String s = ruleNameController.home(model);
         Assert.assertEquals("ruleName/list", s);
     }
 
     @Test
-    public void addRuleForm() {
+    public void addRuleForm_validateResponseURL() {
         RuleName rule = new RuleName();
         rule.setId(1);
         rule.setName("Rule Name");
@@ -50,7 +50,7 @@ public class RuleNameControllerTest {
     }
 
     @Test
-    public void validate() {
+    public void validate_validateResponseURL() {
         RuleName rule = new RuleName();
         rule.setId(1);
         rule.setName("Rule Name");
@@ -64,7 +64,7 @@ public class RuleNameControllerTest {
     }
 
     @Test
-    public void showUpdateForm() {
+    public void showUpdateForm_validateResponseURL() {
         RuleName rule = new RuleName();
         rule.setId(1);
         rule.setName("Rule Name");
@@ -79,7 +79,7 @@ public class RuleNameControllerTest {
     }
 
     @Test
-    public void updateRuleName() {
+    public void updateRuleName_validateResponseURL() {
         RuleName rule = new RuleName();
         rule.setId(1);
         rule.setName("Rule Name");
@@ -93,7 +93,7 @@ public class RuleNameControllerTest {
     }
 
     @Test
-    public void deleteRuleName() {
+    public void deleteRuleName_validateResponseURL() {
         RuleName rule = new RuleName();
         rule.setId(1);
         rule.setName("Rule Name");

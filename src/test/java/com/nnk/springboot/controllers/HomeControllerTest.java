@@ -20,13 +20,13 @@ public class HomeControllerTest {
     Model model;
 
     @Test
-    public void home() {
+    public void home_validateResponseURL() {
         String s = homeController.home(model);
         Assert.assertEquals("home", s);
     }
 
     @Test
-    public void adminHome() {
+    public void adminHome_validateResponseURL() {
         String s = homeController.adminHome(model);
         Assert.assertEquals("redirect:/bidList/list", s);
     }
