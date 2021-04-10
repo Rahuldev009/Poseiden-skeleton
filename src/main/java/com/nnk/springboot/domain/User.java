@@ -1,5 +1,7 @@
 package com.nnk.springboot.domain;
 
+import com.nnk.springboot.validation.ValidPassword;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
@@ -16,6 +18,7 @@ public class User {
     @Column(name = "username")
     private String username;
 
+    @ValidPassword
     @NotBlank(message = "Password is mandatory")
     @Column(name = "password")
     private String password;
