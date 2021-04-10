@@ -30,13 +30,13 @@ public class TradeControllerTest {
     BindingResult bindingResult;
 
     @Test
-    public void home() {
+    public void home_validateResponseURL() {
         String s = tradeController.home(model);
         Assert.assertEquals("trade/list", s);
     }
 
     @Test
-    public void addUser() {
+    public void addUser_validateResponseURL() {
         Trade trade = new Trade();
         trade.setTradeId(1);
         trade.setAccount("Trade Account");
@@ -46,7 +46,7 @@ public class TradeControllerTest {
     }
 
     @Test
-    public void validate() {
+    public void validate_validateResponseURL() {
         Trade trade = new Trade();
         trade.setTradeId(1);
         trade.setAccount("Trade Account");
@@ -56,7 +56,7 @@ public class TradeControllerTest {
     }
 
     @Test
-    public void showUpdateForm() {
+    public void showUpdateForm_validateResponseURL() {
         Trade trade = new Trade();
         trade.setTradeId(1);
         trade.setAccount("Trade Account");
@@ -66,7 +66,7 @@ public class TradeControllerTest {
     }
 
     @Test
-    public void updateTrade() {
+    public void updateTrade_validateResponseURL() {
         Trade trade = new Trade();
         trade.setTradeId(1);
         trade.setAccount("Trade Account");
@@ -76,7 +76,7 @@ public class TradeControllerTest {
     }
 
     @Test
-    public void deleteTrade() {
+    public void deleteTrade_validateResponseURL() {
         Trade trade = new Trade();
         trade.setTradeId(1);
         trade.setAccount("Trade Account");

@@ -30,13 +30,13 @@ public class BidListControllerTest {
     BindingResult bindingResult;
 
     @Test
-    public void home() {
+    public void home_validateResponseURL() {
         String s = bidListController.home(model);
         Assert.assertEquals("bidList/list", s);
     }
 
     @Test
-    public void addBidForm() {
+    public void addBidForm_validateResponseURL() {
         BidList bid = new BidList();
         bid.setBidListId(1);
         bid.setAccount("Account Test");
@@ -47,7 +47,7 @@ public class BidListControllerTest {
     }
 
     @Test
-    public void validate() {
+    public void validate_validateResponseURL() {
         BidList bid = new BidList();
         bid.setBidListId(1);
         bid.setAccount("Account Test");
@@ -58,7 +58,7 @@ public class BidListControllerTest {
     }
 
     @Test
-    public void showUpdateForm() {
+    public void showUpdateForm_validateResponseURL() {
         BidList bid1 = new BidList();
         bid1.setBidListId(1);
         bid1.setAccount("Account Test");
@@ -69,7 +69,7 @@ public class BidListControllerTest {
     }
 
     @Test
-    public void updateBid() {
+    public void updateBid_validateResponseURL() {
         BidList bid = new BidList();
         bid.setBidListId(1);
         bid.setAccount("Account Test");
@@ -80,7 +80,7 @@ public class BidListControllerTest {
     }
 
     @Test
-    public void deleteBid() {
+    public void deleteBid_validateResponseURL() {
         BidList bid = new BidList();
         bid.setBidListId(1);
         bid.setAccount("Account Test");

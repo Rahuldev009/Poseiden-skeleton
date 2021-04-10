@@ -30,13 +30,13 @@ public class CurveControllerTest {
     BindingResult bindingResult;
 
     @Test
-    public void home() {
+    public void home_validateResponseURL() {
         String s = curveController.home(model);
         Assert.assertEquals("curvePoint/list", s);
     }
 
     @Test
-    public void addBidForm() {
+    public void addBidForm_validateResponseURL() {
         CurvePoint curvePoint = new CurvePoint();
         curvePoint.setId(1);
         curvePoint.setCurveId(10);
@@ -47,7 +47,7 @@ public class CurveControllerTest {
     }
 
     @Test
-    public void validate() {
+    public void validate_validateResponseURL() {
         CurvePoint curvePoint = new CurvePoint();
         curvePoint.setId(1);
         curvePoint.setCurveId(10);
@@ -58,7 +58,7 @@ public class CurveControllerTest {
     }
 
     @Test
-    public void showUpdateForm() {
+    public void showUpdateForm_validateResponseURL() {
         CurvePoint curvePoint = new CurvePoint();
         curvePoint.setId(1);
         curvePoint.setCurveId(10);
@@ -69,7 +69,7 @@ public class CurveControllerTest {
     }
 
     @Test
-    public void updateBid() {
+    public void updateBid_validateResponseURL() {
         CurvePoint curvePoint = new CurvePoint();
         curvePoint.setId(1);
         curvePoint.setCurveId(10);
@@ -80,7 +80,7 @@ public class CurveControllerTest {
     }
 
     @Test
-    public void deleteBid() {
+    public void deleteBid_validateResponseURL() {
         CurvePoint curvePoint = new CurvePoint();
         curvePoint.setId(1);
         curvePoint.setCurveId(10);
