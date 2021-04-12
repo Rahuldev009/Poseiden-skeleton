@@ -41,12 +41,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/css/bootstrap.min.css").permitAll()
+                .antMatchers("/css/*").permitAll()
                 .antMatchers("/").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/user/list").permitAll()
                 .antMatchers("/user/add").permitAll()
                 .antMatchers("/user/validate").permitAll()
+                .antMatchers("/user/delete/{id}").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
